@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { TodoComponent } from './consts/todos.component';
+import { TodosComponent } from './shared/components/todos/todos.component';
+import { StudentTaskComponent } from './shared/components/student-task/student-task.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent
+    TodosComponent,
+    StudentTaskComponent
   ],
   imports: [
     BrowserModule

@@ -1,42 +1,23 @@
-import { Component, ViewChild, ElementRef, OnInit} from "@angular/core"
-import { Itodo } from "../models/todos"
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Itodo } from '../../models/todos';
+import { todosData } from '../../consts/todos';
 
 @Component({
-    selector: 'app-todos',
-    templateUrl: './todos.component.html',
-    styleUrls: ['./todos.component.css']
+  selector: 'app-todos',
+  templateUrl: './todos.component.html',
+  styleUrls: ['./todos.component.scss']
 })
-export class TodoComponent implements OnInit{
-    isInEditMode: boolean = false
-    editObj!: Itodo
-    todosArr: Array<Itodo> = [
-        {
-            todoItem: 'Angular',
-            todoId: '123'
-        },
-        {
-            todoItem: 'Typescript',
-            todoId: '124'
-        },
-        {
-            todoItem: 'Javascript',
-            todoId: '125'
-        },
-        {
-            todoItem: 'NodeJs',
-            todoId: '126'
-        },
-        {
-            todoItem: 'ExpressJs',
-            todoId: '127'
-        }
-    ]
-    @ViewChild('todoControl') todoControl!: ElementRef
-    constructor() {}
-    
-    ngOnInit(): void {}
+export class TodosComponent implements OnInit {
+  isInEditMode: boolean = false
+  editObj!: Itodo
+  todosArr: Array<Itodo> = todosData
+  @ViewChild('todoControl') todoControl!: ElementRef
+  constructor() { }
 
-    onTodoAdd(){
+  ngOnInit(): void {
+  }
+
+  onTodoAdd(){
         let val: string = this.todoControl.nativeElement.value
         if(val.length > 0){
             let newTodo: Itodo = {
@@ -46,10 +27,6 @@ export class TodoComponent implements OnInit{
             this.todosArr.unshift(newTodo)
             this.todoControl.nativeElement.value = ''
         }
-    }
-
-    trackByFun(index: number, item: Itodo){
-        return item.todoId
     }
 
     onRemove(id: string){
@@ -77,4 +54,10 @@ export class TodoComponent implements OnInit{
         this.todoControl.nativeElement.value = '';
         this.isInEditMode = false
     }
+
+     trackByFun(index: number, item: Itodo){
+        return item.todoId
+    }
+    
+
 }
